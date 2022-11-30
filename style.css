@@ -1,0 +1,56 @@
+
+html {
+    font-family: 'Space Mono', monospace;
+    }
+
+body {
+    background: #81B29A;
+}
+
+* {
+    border: 1px solid black;
+}
+
+.header {
+    font-size: 100px;
+    padding: 60px;
+    text-align: center;
+}
+
+h1 {
+    color: #81B29A;
+}
+
+
+div {
+    padding: 20px;
+    margin: 50px 50px 100px 100px;
+    border: 10px;
+}
+
+img {
+    text-align:center;
+}
+
+@media (max-width: 900px) {
+    img {
+    width: 50%;
+    height: 50%;
+    justify-content:center;
+    }
+    div {
+    text-align: center;
+    }
+    link {
+    text-align: center
+    }
+
+    ."envelope-open-text" {
+        display: none;
+}
+
+
+
+/* https://holidays.abstractapi.com/v1/ */
+/* api_key = YOUR_UNIQUE_API_KEY */
+    /* & country = SG */
