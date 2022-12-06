@@ -1,6 +1,6 @@
 export { default as Home } from "./Home";
-export { default as about } from "./about";
-export { default as contact} from "./contact";
-export { default as history } from "./history";
-export { default as music } from "./music";
-export { default as index } from "./Links";
+export { default as About } from "./About";
+export { default as Contact } from "./Contact";
+export { default as History } from "./History";
+export { default as Music } from "./Music";
+export { default as Link } from "./Links";
