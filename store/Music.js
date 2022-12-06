@@ -1,4 +1,5 @@
 export default {
   header: "My music Page",
-  view: "Music"
+  view: "Music",
+  music: []
 };
