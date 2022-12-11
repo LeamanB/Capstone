@@ -48,7 +48,7 @@ router.hooks({
               response.data.main.feels_like
             );
             store.Home.weather.description = response.data.weather[0].main;
-            done();
+            done();8
           })
           .catch(err => console.log(err));
         break;
