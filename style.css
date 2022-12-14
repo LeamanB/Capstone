@@ -17,9 +17,6 @@ body {
     text-align: center;
 }
 
-h1 {
-    color: #81B29A;
-}
 
 
 div {
@@ -49,3 +46,5 @@ img {
 /* https://holidays.abstractapi.com/v1/ */
 /* api_key = YOUR_UNIQUE_API_KEY */
     /* & country = SG */
+
+
