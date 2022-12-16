@@ -5,7 +5,8 @@ import { capitalize } from "lodash";
 
 const router = new Navigo("/");
 
-function render(state = store.Home) {
+async function afterRender(state) {
+  if (state.view === "About") {
   document.querySelector("#root").innerHTML = `
   ${Header(state)}
   ${Nav(store.Links)}
@@ -21,70 +22,26 @@ function afterRender() {
   });
 }
 
-function httpGetAsync(url, callback) {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-      callback(xmlHttp.responseText);
-  };
-  xmlHttp.open("GET", url, true); // true for asynchronous
-  xmlHttp.send(null);
-}
 
-var url =
-  "https://holidays.abstractapi.com/v1/?api_key=4038832f283143ebb69fc81911aaea82&country=US&year=2020&month=12&day=25";
-
-httpGetAsync(url);
 
 router.hooks({
   before: (done, params) => {
-    const view =
-      params && params.data && params.data.view
-        ? capitalize(params.data.view)
-        : "Home"; // Add a switch case statement to handle multiple routes
-    switch (view) {
-      case "Home":
-        axios
-          .get(
-            `https://api.openweathermap.org/data/2.5/weather?q=st%20louis&appid=${process.env.OPEN_WEATHER_MAP_API_KEY}`
-          )
-          .then(response => {
-            const kelvinToFahrenheit = kelvinTemp =>
-              Math.round((kelvinTemp - 273.15) * (9 / 5) + 32);
-
-            store.Home.weather = {};
-            store.Home.weather.city = response.data.name;
-            store.Home.weather.temp = kelvinToFahrenheit(
-              response.data.main.temp
-            );
-            store.Home.weather.feelsLike = kelvinToFahrenheit(
-              response.data.main.feels_like
-            );
-            store.Home.weather.description = response.data.weather[0].main;
-            done();
-          })
-          .catch(err => console.log(err));
-        break;
-      // New Case for Pizza View
-      case "Pizza":
-        // New Axios get request utilizing already made environment variable
-        axios
-          .get(`${process.env.PIZZA_PLACE_API_URL}/pizzas`)
-          .then(response => {
-            // Storing retrieved data in state
-            store.Pizza.pizzas = response.data;
-            done();
-          })
-          .catch(error => {
-            console.log("It puked", error);
-            done();
-          });
-        break;
-      default:
-        done();
-    }
-  }
+    const view = params && params.data && params.data.view
+      ? capitalize(params.data.view)
+      : "Home"; // Add a switch case statement to handle multiple routes
+      switch (view) {
+        case "Home":
+    axios.get('https://holidays.abstractapi.com/v1/?api_key=4038832f283143ebb69fc81911aaea82&country=US&year=2020&month=12&day=25')
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
 });
+break;
+default:
+  done();
+}}});
 
 router
   .on({
