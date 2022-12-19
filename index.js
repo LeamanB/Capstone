@@ -27,31 +27,31 @@ function afterRender(state) {
   });
 }
 
-// router.hooks({
-//   before: (done, params) => {
-//     const view =
-//       params && params.data && params.data.view
-//         ? capitalize(params.data.view)
-//         : "Home"; // Add a switch case statement to handle multiple routes
-//     switch (view) {
-//       case "Home":
-//         axios
-//           .get(
-//             `https://holidays.abstractapi.com/v1/?api_key=${process.env.HOLIDAYS_API}`
-//           )
-//           .then(response => {
-//             console.log(response.data);
-//             done();
-//           })
-//           .catch(error => {
-//             console.log(error);
-//           });
-//         break;
-//       default:
-//         done();
-//     }
-//   }
-// });
+router.hooks({
+  before: (done, params) => {
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home"; // Add a switch case statement to handle multiple routes
+    switch (view) {
+      case "Home":
+        axios
+          .get(
+            `https://holidays.abstractapi.com/v1/?api_key=${process.env.HOLIDAYS_API}&country=US&year=2020&month=12&day=25`
+          )
+          .then(response => {
+            console.log(response.data);
+            done();
+          })
+          .catch(error => {
+            console.log(error);
+          });
+        break;
+      default:
+        done();
+    }
+  }
+});
 
 router
   .on({
