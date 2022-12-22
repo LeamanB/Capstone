@@ -22,9 +22,9 @@ function render(state = store.Home) {
 
 function afterRender(state) {
   // add menu toggle to bars icon in nav bar
-  document.querySelector(".fa-bars").addEventListener("click", () => {
-    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-  });
+  // document.querySelector(".fa-bars").addEventListener("click", () => {
+  //   document.querySelector("nav > ul").classList.toggle("hidden--mobile");
+  // });
 }
 
 router.hooks({
@@ -37,10 +37,10 @@ router.hooks({
       case "Home":
         axios
           .get(
-            `https://holidays.abstractapi.com/v1/?api_key=${process.env.HOLIDAYS_API}&country=US&year=2020&month=12&day=25`
+            `https://calendarific.com/api/v2/holidays?api_key=${process.env.CALENDARIFIC_API_KEY}&country=US&year=2019`
           )
           .then(response => {
-            console.log(response.data);
+            console.log(response.data.response.holidays);
             done();
           })
           .catch(error => {
