@@ -27,6 +27,10 @@ function afterRender(state) {
   // });
 }
 
+
+
+
+
 router.hooks({
   before: (done, params) => {
     const view =
@@ -53,6 +57,22 @@ router.hooks({
   }
 });
 
+// https://calendarific.com/api/v2/holidays?&api_key=6ec156415acd4b5368ca446f8012e22c81c7a2ef&country=US&year=2019&month=12&day=25
+
+
+// Puerto Rico: pr
+// https://calendarific.com/api/v2/holidays?&api_key=6ec156415acd4b5368ca446f8012e22c81c7a2ef&pr=US&year=2019&month=12&day=25
+
+
+// Sweden: se
+// https://calendarific.com/api/v2/holidays?&api_key=6ec156415acd4b5368ca446f8012e22c81c7a2ef&se=US&year=2019&month=12&day=25
+
+
+// Japan: jp
+// https://calendarific.com/api/v2/holidays?&api_key=6ec156415acd4b5368ca446f8012e22c81c7a2ef&jp=US&year=2019&month=12&day=25
+
+
+//
 router
   .on({
     "/": () => render(),
