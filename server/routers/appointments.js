@@ -19,27 +19,7 @@ router.get("/", (request, response) => {
   });
 });
 
-// Get a single record by ID using a query parameter
-router.get("/:id", (request, response) => {
-  Appointment.findById(request.params.id, (error, record) => {
-    if (error) return response.sendStatus(500).json(error);
-    return response.json(record);
-  });
-});
 
-router.get("/crust/:crust", (request, response) => {
-  Appointment.find({ crust: request.params.crust }, (error, record) => {
-    if (error) return response.sendStatus(500).json(error);
-    return response.json(record);
-  });
-});
-
-router.delete("/:id", (request, response) => {
-  Appointment.findByIdAndRemove(request.params.id, {}, (error, record) => {
-    if (error) return response.sendStatus(500).json(error);
-    return response.json(record);
-  });
-});
 
 router.put("/:id", (request, response) => {
   const body = request.body;
