@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const appointmentSchema = new mongoose.Schema({
+const historySchema = new mongoose.Schema({
   customer: {
     type: String,
     required: true
@@ -22,6 +22,6 @@ const appointmentSchema = new mongoose.Schema({
   }
 });
 
-const Appointment = mongoose.model("Appointment", appointmentSchema);
+const History = mongoose.model("History", historySchema);
 
-module.exports = Appointment;
+module.exports = History;
