@@ -10,7 +10,7 @@ export default () => html`
       <input
         id="start"
         name="start"
-        type="datetime-local"
+        type="date"
         value="${holidayDate.toJSON().substring(0, 16)}"
       />
 

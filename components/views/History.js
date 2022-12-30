@@ -7,10 +7,11 @@ export default () => html`
         <p>Learn the History</p>
         <div>
           <h3>History Lesson</h3>
-           <!-- store.Home.History -->
+          ${store.Home.userCalender}
         </div>
         <div>
           <h3>Documentaries</h3>
+          ${store.Home.userCalender}
         </div>
       </body>
 
