@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 // Require models
-const appointments = require("./routers/appointments");
+const historys = require("./routers/historys");
 
 dotenv.config();
 
@@ -57,7 +57,7 @@ app.use(logging);
 // =======================
 // HERE GO THE ROUTES
 // =======================
-app.use("/appointments", appointments);
+app.use("/historys", historys);
 
 // Handle the request with HTTP GET method
 //  from http://localhost:4040/status
