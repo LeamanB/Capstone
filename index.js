@@ -3,15 +3,11 @@ import * as store from "./store";
 import Navigo from "navigo";
 import { capitalize } from "lodash";
 import axios from "axios";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const router = new Navigo("/");
 var calendar;
 
-function render(state = store.Home) {
-  console.log("state", state);
+function render(state) {
   document.querySelector("#root").innerHTML = `
   ${Header(state)}
   ${Nav(store.Links)}
@@ -19,93 +15,89 @@ function render(state = store.Home) {
   ${Footer()}
   `;
 
-  // afterRender(state);
-
   router.updatePageLinks();
+
+  afterRender(state);
 }
 
 function afterRender(state) {
-  // add menu toggle to bars icon in nav bar
-  document.querySelector(".fa-bars").addEventListener("click", () => {
-    document.querySelector("nav > ul").classList.toggle("hidden--mobile");
-  });
-}
-
-function addEventListeners(st) {
-  // add menu toggle to bars icon in nav bar
-  document
-    .querySelector(".fa-bars")
-    .addEventListener("click", () =>
-      document.querySelector("nav > ul").classList.toggle("hidden--mobile")
-    );
-
-  if (st.view === "Schedule") {
+  if (state.view === "Home") {
     document.querySelector("form").addEventListener("submit", event => {
-      alert("Hi");
+      event.preventDefault();
+
       const inputList = event.target.elements;
-      const start = new Date(inputList.start.value);
-      const country = inputList.Countries.value;
 
-      axios
-        .get(
-          `https://calendarific.com/api/v2/holidays?api_key=${
-            process.env.CALENDARIFIC_API_KEY
-          }&country=${country}&year=${start.getFullYear()}&month=${start.getMonth()}&day=${start.getDay()}`
-        )
-        .then(response => {
-
-        let (store.Home) = response.data;
-        console.log(`${store.Home}`)
-        })
-        .catch(error => {
-          console.log(error);
-        });
-
-      // Puerto Rico: pr
-      // Sweden: se
-      // Japan: jp
-
-      // event.preventDefault();
+      // const requestData = {
+      //   Date: new Date(inputList.start.value).toJSON(),
+      //   Countries: inputList.Countries.value
+      // };
 
       // axios
-      //   .post(`${process.env.API_URL}/appointments`, requestData)
+      //   .post(`${process.env.API_URL}/home`, requestData)
       //   .then(response => {
       //     // Push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
-      //     store.Appointments.appointments.push(response.data);
-      //     router.navigate("/appointments");
+      //     store.Home.userCalender.push(response.data);
+      //     router.navigate("/home");
       //   })
       //   .catch(error => {
       //     console.log("It puked", error);
       //   });
+      console.log(inputList.start.value);
+      const [year, month, day] = inputList.start.value.split("-");
+      console.log(start);
+      axios
+        .get(
+          `https://calendarific.com/api/v2/holidays?api_key=${process.env.CALENDARIFIC_API_KEY}&country=${inputList.Countries.value}&year=${year}&month=${month}&day=${day}`
+        )
+        .then(response => {
+          console.log("response", response.data);
+          store.Home.holidays = response.data.response.holidays;
+          router.navigate("/home");
+        })
+        .catch(err => console.log(err));
     });
   }
 }
 
 router.hooks({
   before: (done, params) => {
+    let page = "Home";
+    let id = "";
+
+    if (params && params.data) {
+      page = params.data.page ? capitalize(params.data.page) : "Home";
+      id = params.data.id ? params.data.id : "";
+    }
+
+    // if (page === "Home") {
+    //   axios
+    //     .get(
+    //       `https://calendarific.com/api/v2/holidays?api_key=${
+    //         process.env.CALENDARIFIC_API_KEY
+    //       }&country=${country}&year=${start.getFullYear()}&month=${start.getMonth()}&day=${start.getDay()}`
+    //     )
+    //     .then(response => {
+    //       store.Home.userCalender = {};
+
+    //       done();
+    //     })
+    //     .catch(err => console.log(err));
+    done();
+    // }
+  },
+  already: params => {
     const view =
       params && params.data && params.data.view
         ? capitalize(params.data.view)
-        : "Home"; // Add a switch case statement to handle multiple routes
-    switch (view) {
-      case "Home":
-        axios
-          .get(
-            `https://calendarific.com/api/v2/holidays?api_key=${process.env.CALENDARIFIC_API_KEY}&country=US&year=2019`
-          )
-          .then(response => {
-            console.log(response.data.response.holidays);
-            done();
-          })
-          .catch(error => {
-            console.log(error);
-          });
-        break;
-      default:
-        done();
-    }
+        : "Home";
+
+    render(store[view]);
   }
 });
+
+// Puerto Rico: pr
+// Sweden: se
+// Japan: jp
 
 router
   .on({

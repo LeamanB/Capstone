@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 // Require models
-const historys = require("./routers/historys");
+const home = require("./routers/home");
 
 dotenv.config();
 
@@ -57,7 +57,7 @@ app.use(logging);
 // =======================
 // HERE GO THE ROUTES
 // =======================
-app.use("/historys", historys);
+app.use("/home", home);
 
 // Handle the request with HTTP GET method
 //  from http://localhost:4040/status
@@ -76,11 +76,11 @@ app.get("/", (request, response) => {
 });
 
 // route to return the post body
-app.post("/", (request, response) => {
-  const body = request.body;
-  body.date = Date.now();
-  response.json(body);
-});
+// app.post("/", (request, response) => {
+//   const body = request.body;
+//   body.date = Date.now();
+//   response.json(body);
+// });
 
 // Tell the Express app to start listening
 // Let the humans know I am running and listening on 4040
