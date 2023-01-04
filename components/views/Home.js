@@ -3,7 +3,7 @@ import html from "html-literal";
 export default state => html`
   <section id="title">
     <tr>
-      <th>Holiday name</th>
+      <th>Holiday name:</th>
     </tr>
     ${checkHoliday(state.holidays)}
     ${state.holidays.map(holiday => {
