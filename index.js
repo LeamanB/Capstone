@@ -65,23 +65,13 @@ router.hooks({
       params && params.data && params.data.view
         ? capitalize(params.data.view)
         : "Home";
-
-    if (view === "Home") {
-      // store.Home.holidays = [];
-      console.log(store.Home.holidays);
-      //   axios
-      //     .get(
-      //       `https://calendarific.com/api/v2/holidays?api_key=${
-      //         process.env.CALENDARIFIC_API_KEY
-      //       }&country=${country}&year=${start.getFullYear()}&month=${start.getMonth()}&day=${start.getDay()}`
-      //     )
-      //     .then(response => {
-      //       store.Home.userCalender = {};
-
-      //       done();
-      //     })
-      // .catch(err => console.log(err));
-      done();
+    switch (view) {
+      case "Home":
+        console.log(store.Home.holidays);
+        done();
+        break;
+      default:
+        done();
     }
   },
   already: params => {
