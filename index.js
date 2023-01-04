@@ -7,7 +7,7 @@ import axios from "axios";
 const router = new Navigo("/");
 var calendar;
 
-function render(state) {
+function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
   ${Header(state)}
   ${Nav(store.Links)}
@@ -52,7 +52,7 @@ function afterRender(state) {
         .then(response => {
           console.log("response", response.data);
           store.Home.holidays = response.data.response.holidays;
-          router.navigate("/home");
+          router.navigate("/Home");
         })
         .catch(err => console.log(err));
     });
@@ -61,29 +61,28 @@ function afterRender(state) {
 
 router.hooks({
   before: (done, params) => {
-    let page = "Home";
-    let id = "";
+    const view =
+      params && params.data && params.data.view
+        ? capitalize(params.data.view)
+        : "Home";
 
-    if (params && params.data) {
-      page = params.data.page ? capitalize(params.data.page) : "Home";
-      id = params.data.id ? params.data.id : "";
+    if (view === "Home") {
+      // store.Home.holidays = [];
+      console.log(store.Home.holidays);
+      //   axios
+      //     .get(
+      //       `https://calendarific.com/api/v2/holidays?api_key=${
+      //         process.env.CALENDARIFIC_API_KEY
+      //       }&country=${country}&year=${start.getFullYear()}&month=${start.getMonth()}&day=${start.getDay()}`
+      //     )
+      //     .then(response => {
+      //       store.Home.userCalender = {};
+
+      //       done();
+      //     })
+      // .catch(err => console.log(err));
+      done();
     }
-
-    // if (page === "Home") {
-    //   axios
-    //     .get(
-    //       `https://calendarific.com/api/v2/holidays?api_key=${
-    //         process.env.CALENDARIFIC_API_KEY
-    //       }&country=${country}&year=${start.getFullYear()}&month=${start.getMonth()}&day=${start.getDay()}`
-    //     )
-    //     .then(response => {
-    //       store.Home.userCalender = {};
-
-    //       done();
-    //     })
-    //     .catch(err => console.log(err));
-    done();
-    // }
   },
   already: params => {
     const view =
@@ -101,14 +100,10 @@ router.hooks({
 
 router
   .on({
-    "/": () => render(store.Home),
-    ":page/:id": params => {
-      let page = capitalize(params.data.page);
-      render(store[page]);
-    },
-    ":page": params => {
-      let page = capitalize(params.data.page);
-      render(store[page]);
+    "/": () => render(),
+    ":view": params => {
+      let view = capitalize(params.data.view);
+      render(store[view]);
     }
   })
   .resolve();

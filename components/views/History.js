@@ -4,7 +4,10 @@ export default () => html`
   <section id="history">
 
         <h1>History</h1>
-        <p>Learn the History</p>
+        <p>Learn the History of</p>
+
+        console.log(
+          components\views\Home.js</p>
         <div>
           <h3>History Lesson</h3>
           <form method="get" action="https://en.wikipedia.org/w/index.php">
