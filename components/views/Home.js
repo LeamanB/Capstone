@@ -2,17 +2,15 @@ import html from "html-literal";
 
 export default state => html`
   <section id="title">
-    <tr>
-      <th>Holiday name:</th>
-    </tr>
-    ${checkHoliday(state.holidays)}
-    ${state.holidays.map(holiday => {
-      if (holiday.name) {
-        return `<tr><td>${holiday.name}</td></tr>`;
-      } else {
-        return `<tr><td>no holiday found</td></tr>`;
-      }
-    })};
+    <table id="holiday-name">
+      <tr>
+        <th>Holiday name:</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        ${checkHoliday(state.holidays)}
+      </tr>
+    </table>
 
     <form id="schedule-form" method="POST" action="">
       <input id="start" name="start" type="date" />
@@ -32,7 +30,10 @@ export default state => html`
 `;
 function checkHoliday(holidays) {
   if (holidays) {
-    return holidays.map(holiday => `<tr><td>${holiday.name}</td></tr>`);
+    return holidays.map(
+      holiday =>
+        `<tr><td>${holiday.name}</td><td>${holiday.description}</td></tr>`
+    );
   } else {
     return `<tr><td>no holiday found</td></tr>`;
   }
