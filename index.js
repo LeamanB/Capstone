@@ -27,24 +27,9 @@ function afterRender(state) {
 
       const inputList = event.target.elements;
 
-      // const requestData = {
-      //   Date: new Date(inputList.start.value).toJSON(),
-      //   Countries: inputList.Countries.value
-      // };
-
-      // axios
-      //   .post(`${process.env.API_URL}/home`, requestData)
-      //   .then(response => {
-      //     // Push the new pizza onto the Pizza state pizzas attribute, so it can be displayed in the pizza list
-      //     store.Home.userCalender.push(response.data);
-      //     router.navigate("/home");
-      //   })
-      //   .catch(error => {
-      //     console.log("It puked", error);
-      //   });
       console.log(inputList.start.value);
       const [year, month, day] = inputList.start.value.split("-");
-      console.log(start);
+      // console.log(start);
       axios
         .get(
           `https://calendarific.com/api/v2/holidays?api_key=${process.env.CALENDARIFIC_API_KEY}&country=${inputList.Countries.value}&year=${year}&month=${month}&day=${day}`
@@ -52,10 +37,15 @@ function afterRender(state) {
         .then(response => {
           console.log("response", response.data);
           store.Home.holidays = response.data.response.holidays;
+          store.History.holidays = response.data.response.holidays;
           router.navigate("/Home");
         })
         .catch(err => console.log(err));
     });
+  }
+  if (state.view === "History") {
+    let holidayWiki = store.Home.holidays;
+    return console.log("This is History" + holidayWiki);
   }
 }
 
@@ -68,6 +58,10 @@ router.hooks({
     switch (view) {
       case "Home":
         console.log(store.Home.holidays);
+        done();
+        break;
+      case "History":
+        console.log(store.Home.holidays.name);
         done();
         break;
       default:
