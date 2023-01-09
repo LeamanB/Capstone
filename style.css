@@ -6,8 +6,15 @@
 
 header {
     font-size: 100px;
+    font-family: 'Space Mono', monospace;
     padding: 60px;
     text-align: center;
+    background: white;
+}
+
+.banner {
+    background-image: url("https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
 }
 
 body {
@@ -27,15 +34,49 @@ footer {
     text-align: center;
 }
 
+h1 {
+    font-size: 50px;
+    text-align: center;
+
+}
+
+h3 {
+    text-align: center;
+
+}
 html {
     font-family: 'Space Mono', monospace;
+    min-height: 100%;
+    background-image: url("https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#holiday-name {
+    text-align: center;
+    font-size: 30px;
+    background-color: yellowgreen;
 }
 
 .image {
     text-align: center;
     align-items: center;
     background-image: url("https://images.unsplash.com/photo-1530103862676-de8c9debad1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+    background-size: cover;
+    background-position: center;
+    height: 300px;
 }
+
+p {
+    font-size: 35px;
+    text-align: center;
+}
+
+#schedule-form {
+    font-size: 30px;
+}
+
 
 ul.navLinks li {
 list-style-type: none;
@@ -46,6 +87,8 @@ min-width: 12rem;
 text-align: center;
 background-color: White;
 font-size: 20px;
+font-weight: bold;
+margin: auto;
 }
 
 
@@ -54,6 +97,8 @@ nav {
     display: inline-block;
     align-items: center;
     flex-direction: column;
+    margin: auto;
+    background-color: red;
 }
 
 

@@ -38,6 +38,7 @@ function afterRender(state) {
           console.log("response", response.data);
           store.Home.holidays = response.data.response.holidays;
           store.History.holidays = response.data.response.holidays;
+          store.Music.holidays = response.data.response.holidays;
           router.navigate("/Home");
         })
         .catch(err => console.log(err));
@@ -47,6 +48,11 @@ function afterRender(state) {
     let holidayWiki = store.Home.holidays;
     return console.log("This is History" + holidayWiki);
   }
+
+  // if (state.view === "Music") {
+  //   let holidayWikis = store.Home.holiday;
+  //   return console.log("This is Music" + holidayWiki);
+  // }
 }
 
 router.hooks({
