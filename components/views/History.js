@@ -2,30 +2,28 @@ import html from "html-literal";
 
 export default state => html`
   <section id="history">
-
         <h1>History</h1>
         <p>Learn the History of
-${state.holidays.map(
-  holiday => `<tr><td>${holiday.name}</td><td>${holiday.description}</td></tr>`
-)}
+${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
 </p>
+
+
         <div>
           <h3>History Lesson</h3>
-          <!-- <form method="get" action="https://en.wikipedia.org/wiki/"> -->
-  <!-- <input type="text" name="search">
-  <input type="submit">
-</form> -->
-
-        </div>
-        <h2>Books</h2>
-
-        <div>
-          <h3>Documentaries</h3>
-          <iframe id="ytplayer" type="text/html" width="640" height="360"
-  src="https://www.youtube.com/results?search_query=(SEARCH-TERM-HERE)"
-  frameborder="0"></iframe>
+          <iframe width="700" height="400" src="https://en.wikipedia.org/wiki/${checkHoliday(
+            state.holidays
+          )}" frameborder="0" allowfullscreen></iframe>
+      </iframe>
         </div>
       </body>
 
-  </section>
+</section>
 `;
+
+function checkHoliday(holidays) {
+  if (holidays) {
+    return holidays.map(holiday => `${holiday.name}`);
+  } else {
+    return `<tr><td>no holiday found</td></tr>`;
+  }
+}

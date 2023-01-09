@@ -1,4 +1,5 @@
 export default {
   header: "My history Page",
-  view: "History"
+  view: "History",
+  holidays: []
 };

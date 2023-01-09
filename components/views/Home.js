@@ -25,9 +25,8 @@ export default state => html`
       <input type="submit" name="submit" value="Submit" />
     </form>
   </section>
-
-  <!-- <div>${JSON.stringify(state.holidays)}</div> -->
 `;
+
 function checkHoliday(holidays) {
   if (holidays) {
     return holidays.map(
