@@ -10,7 +10,7 @@ ${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
 
         <div>
           <h3>History Lesson</h3>
-          <iframe width="700" height="400" src="https://en.wikipedia.org/wiki/${checkHoliday(
+          <iframe id="wiki" width="2000" height="1700" src="https://en.wikipedia.org/wiki/${checkHoliday(
             state.holidays
           )}" frameborder="0" allowfullscreen></iframe>
       </iframe>
