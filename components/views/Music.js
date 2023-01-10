@@ -9,7 +9,7 @@ ${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
       </p>
         <div>
           <h3>Songs</h3>
-      <iframe id="songPlayer" width="2000" height="1700" src="https://en.wikibooks.org/w/index.php?go=Go&search=${checkHoliday(
+      <iframe id="songPlayer" width="2000" height="1700" src="https://archive.org/details/etree?query=${checkHoliday(
         state.holidays
       )}" frameborder="0" allowfullscreen></iframe>
       </div>
