@@ -15,8 +15,26 @@ ${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
           )}" frameborder="0" allowfullscreen></iframe>
       </iframe>
         </div>
-      </body>
 
+        <div>
+        <h3>Poems</h3>
+        <p>
+        <iframe id="wiki" width="2000" height="1700" src="https://www.poetryfoundation.org/search?query=${checkHoliday(
+          state.holidays
+        )}" frameborder="0" allowfullscreen></iframe>
+      </p>
+
+        <div>
+        <h3>Books to Read</h3>
+        <iframe id="wiki" width="2000" height="1700" src="https://en.wikibooks.org/w/index.php?go=Go&search=${checkHoliday(
+          state.holidays
+        )}" frameborder="0" allowfullscreen></iframe>
+      </body>
+        </div>
+
+
+
+        </div>
 </section>
 `;
 

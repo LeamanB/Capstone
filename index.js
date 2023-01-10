@@ -5,7 +5,6 @@ import { capitalize } from "lodash";
 import axios from "axios";
 
 const router = new Navigo("/");
-var calendar;
 
 function render(state = store.Home) {
   document.querySelector("#root").innerHTML = `
@@ -29,7 +28,6 @@ function afterRender(state) {
 
       console.log(inputList.start.value);
       const [year, month, day] = inputList.start.value.split("-");
-      // console.log(start);
       axios
         .get(
           `https://calendarific.com/api/v2/holidays?api_key=${process.env.CALENDARIFIC_API_KEY}&country=${inputList.Countries.value}&year=${year}&month=${month}&day=${day}`
@@ -48,11 +46,6 @@ function afterRender(state) {
     let holidayWiki = store.Home.holidays;
     return console.log("This is History" + holidayWiki);
   }
-
-  // if (state.view === "Music") {
-  //   let holidayWikis = store.Home.holiday;
-  //   return console.log("This is Music" + holidayWiki);
-  // }
 }
 
 router.hooks({
@@ -83,10 +76,6 @@ router.hooks({
     render(store[view]);
   }
 });
-
-// Puerto Rico: pr
-// Sweden: se
-// Japan: jp
 
 router
   .on({

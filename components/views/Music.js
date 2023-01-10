@@ -9,10 +9,13 @@ ${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
       </p>
         <div>
           <h3>Songs</h3>
-      <iframe id="wiki" width="2000" height="1700" src="https://www.allmusic.com/search/all/${checkHoliday(
+      <iframe id="songPlayer" width="2000" height="1700" src="https://en.wikibooks.org/w/index.php?go=Go&search=${checkHoliday(
         state.holidays
       )}" frameborder="0" allowfullscreen></iframe>
       </div>
+
+      <div>
+</div>
       </body>
 
   </section>
@@ -20,10 +23,7 @@ ${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
 
 function checkHoliday(holidays) {
   if (holidays) {
-    return holidays.map(
-      holiday =>
-        `<tr><td>${holiday.name}</td><td>${holiday.description}</td></tr>`
-    );
+    return holidays.map(holiday => `${holiday.name}`);
   } else {
     return `<tr><td>no holiday found</td></tr>`;
   }
