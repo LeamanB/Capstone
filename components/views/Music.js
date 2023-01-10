@@ -9,13 +9,12 @@ ${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
       </p>
         <div>
           <h3>Songs</h3>
-      <iframe id="songPlayer" width="2000" height="1700" src="https://archive.org/details/etree?query=${checkHoliday(
+            <p>
+      <iframe id="songPlayer" width="100%" height="1000vw" src="https://archive.org/details/etree?query=${checkHoliday(
         state.holidays
       )}" frameborder="0" allowfullscreen></iframe>
-      </div>
-
-      <div>
-</div>
+            </p>
+          </div>
       </body>
 
   </section>
