@@ -13,10 +13,10 @@ export default state => html`
     </table>
 
     <form id="schedule-form" method="POST" action="">
-      <label for="date">Select a date -> </label>
+      <label class="holidayForm" for="date">Select a date</label>
       <input id="start" name="start" type="date" />
 
-      <label for="Countries">Select a country -> </label>
+      <label class="holidayForm" for="Countries">Select a country</label>
       <select name="Countries" id="Countries">
         <option value="PR">Puerto Rico</option>
         <option value="SE">Sweden</option>
