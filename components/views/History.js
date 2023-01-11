@@ -39,7 +39,7 @@ ${state.holidays.map(holiday => `<tr><td>${holiday.name}.</td></tr>`)}
 `;
 
 function checkHoliday(holidays) {
-  if (holidays) {
+  if (holidays > [0]) {
     return holidays.map(holiday => `${holiday.name}`);
   } else {
     return `<tr><td>no holiday found</td></tr>`;

@@ -86,11 +86,17 @@ html {
 }
 
 #holiday-name {
+    border: 10px;
+    padding: 30px;
+    margin: 10px;
     text-align: center;
     font-size: 30px;
     background-color: yellowgreen;
+    border-style: groove;
     display: flex;
     justify-content: center;
+
+
 }
 
 .image {
@@ -128,6 +134,22 @@ p {
 #sendCor {
     font-size: 25px;
     font-weight: bold;
+}
+
+th {
+    width: 100vw;
+    text-align: center;
+    border: 1px solid black;
+    padding: 5px;
+}
+
+tr {
+padding: 200px;
+border-style: ridge;
+margin: 300px;
+padding: 200px;
+
+
 }
 
 ul.navLinks li {
