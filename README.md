@@ -1,4 +1,5 @@
 About Capstone:
+
 This is the very first SAP I've created from scratch. It was made with html, css, and Javascript.
 
 ​The website is called "Holidays, History, Music. It was made to help people learn more about different cultures. Specifically, users can learn about holidays of Puerto Rico, Sweden, and Japan.
